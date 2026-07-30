@@ -1,28 +1,13 @@
 {
   "_comment": "Autobot Framework Artifact Registry — updated automatically by CI on each tagged release. Never edit manually.",
   "_naming_convention": "{Platform}_{FamilyName}_{Language}_{TestFramework}",
-  "_platform_values": ["Web", "Mobile", "API", "Desktop"],
-  "_language_values": ["Java", "Python", "CSharp", "JavaScript"],
-  "_test_framework_rules": {
-    "Web/Java":        ["TestNG", "BDD"],
-    "Web/Python":      ["Pytest", "BDD"],
-    "Web/CSharp":      ["NUnit", "BDD"],
-    "Web/JavaScript":  ["Playwright"],
-    "Mobile/Java":     ["TestNG", "BDD"],
-    "Mobile/Python":   ["Pytest", "BDD"],
-    "Mobile/CSharp":   ["NUnit", "BDD"],
-    "Mobile/JavaScript": ["WebDriverIO"],
-    "API/Java":        ["TestNG", "BDD"],
-    "API/Python":      ["Pytest", "BDD"],
-    "API/CSharp":      ["NUnit", "BDD"],
-    "API/JavaScript":  ["Jest"]
-  },
+  "_platform_rule": "WebDriverIO = Mobile (Appium-backed). Playwright covers Web UI and API (separate repos). No BDD/C#/Python-API until those framework repos are built.",
   "schema_version": "1",
   "maven_repo_url": "https://raw.githubusercontent.com/tribikram1992/autobot-framework-artifacts/main/maven-repo",
   "frameworks": {
 
     "web-vibium-java-testng": {
-      "description": "Vibium Web / Java / TestNG — Selenium-based web automation",
+      "description": "Vibium Web / Java / Selenium + TestNG",
       "source_repo": "tribikram1992/Web_VibiumFramework_Java_TestNG",
       "platform": "web", "language": "java", "test_framework": "testng",
       "adapter_key": ["web", "java", "testng"],
@@ -30,62 +15,8 @@
       "latest": null, "versions": {}
     },
 
-    "web-vibium-java-bdd": {
-      "description": "Vibium Web / Java / Cucumber+TestNG BDD",
-      "source_repo": "tribikram1992/Web_VibiumFramework_Java_BDD",
-      "platform": "web", "language": "java", "test_framework": "bdd",
-      "adapter_key": ["web", "java", "bdd"],
-      "artifact_type": "jar", "group_id": "io.vibium",
-      "latest": null, "versions": {}
-    },
-
-    "web-vibium-python-pytest": {
-      "description": "Vibium Web / Python / pytest — Selenium/Playwright-based web automation",
-      "source_repo": "tribikram1992/Web_VibiumFramework_Python_Pytest",
-      "platform": "web", "language": "python", "test_framework": "pytest",
-      "adapter_key": ["web", "python", "pytest"],
-      "artifact_type": "wheel", "requires_python": ">=3.11,<3.13",
-      "latest": null, "versions": {}
-    },
-
-    "web-vibium-python-bdd": {
-      "description": "Vibium Web / Python / Behave BDD",
-      "source_repo": "tribikram1992/Web_VibiumFramework_Python_BDD",
-      "platform": "web", "language": "python", "test_framework": "bdd",
-      "adapter_key": ["web", "python", "bdd"],
-      "artifact_type": "wheel", "requires_python": ">=3.11,<3.13",
-      "latest": null, "versions": {}
-    },
-
-    "web-vibium-csharp-nunit": {
-      "description": "Vibium Web / C# / NUnit — Selenium-based web automation",
-      "source_repo": "tribikram1992/Web_VibiumFramework_CSharp_NUnit",
-      "platform": "web", "language": "csharp", "test_framework": "nunit",
-      "adapter_key": ["web", "csharp", "nunit"],
-      "artifact_type": "nupkg",
-      "latest": null, "versions": {}
-    },
-
-    "web-vibium-csharp-bdd": {
-      "description": "Vibium Web / C# / SpecFlow BDD",
-      "source_repo": "tribikram1992/Web_VibiumFramework_CSharp_BDD",
-      "platform": "web", "language": "csharp", "test_framework": "bdd",
-      "adapter_key": ["web", "csharp", "bdd"],
-      "artifact_type": "nupkg",
-      "latest": null, "versions": {}
-    },
-
-    "web-vibium-javascript-playwright": {
-      "description": "Vibium Web / JavaScript / Playwright",
-      "source_repo": "tribikram1992/Web_VibiumFramework_JavaScript_Playwright",
-      "platform": "web", "language": "javascript", "test_framework": "playwright",
-      "adapter_key": ["web", "javascript", "playwright"],
-      "artifact_type": "npm",
-      "latest": null, "versions": {}
-    },
-
     "mobile-vibium-java-testng": {
-      "description": "Vibium Mobile / Java / Appium+TestNG",
+      "description": "Vibium Mobile / Java / Appium + TestNG",
       "source_repo": "tribikram1992/Mobile_VibiumFramework_Java_TestNG",
       "platform": "mobile", "language": "java", "test_framework": "testng",
       "adapter_key": ["mobile", "java", "testng"],
@@ -93,62 +24,8 @@
       "latest": null, "versions": {}
     },
 
-    "mobile-vibium-java-bdd": {
-      "description": "Vibium Mobile / Java / Appium+Cucumber BDD",
-      "source_repo": "tribikram1992/Mobile_VibiumFramework_Java_BDD",
-      "platform": "mobile", "language": "java", "test_framework": "bdd",
-      "adapter_key": ["mobile", "java", "bdd"],
-      "artifact_type": "jar", "group_id": "io.vibium",
-      "latest": null, "versions": {}
-    },
-
-    "mobile-vibium-python-pytest": {
-      "description": "Vibium Mobile / Python / Appium+pytest",
-      "source_repo": "tribikram1992/Mobile_VibiumFramework_Python_Pytest",
-      "platform": "mobile", "language": "python", "test_framework": "pytest",
-      "adapter_key": ["mobile", "python", "pytest"],
-      "artifact_type": "wheel", "requires_python": ">=3.11,<3.13",
-      "latest": null, "versions": {}
-    },
-
-    "mobile-vibium-python-bdd": {
-      "description": "Vibium Mobile / Python / Appium+Behave BDD",
-      "source_repo": "tribikram1992/Mobile_VibiumFramework_Python_BDD",
-      "platform": "mobile", "language": "python", "test_framework": "bdd",
-      "adapter_key": ["mobile", "python", "bdd"],
-      "artifact_type": "wheel", "requires_python": ">=3.11,<3.13",
-      "latest": null, "versions": {}
-    },
-
-    "mobile-vibium-csharp-nunit": {
-      "description": "Vibium Mobile / C# / Appium+NUnit",
-      "source_repo": "tribikram1992/Mobile_VibiumFramework_CSharp_NUnit",
-      "platform": "mobile", "language": "csharp", "test_framework": "nunit",
-      "adapter_key": ["mobile", "csharp", "nunit"],
-      "artifact_type": "nupkg",
-      "latest": null, "versions": {}
-    },
-
-    "mobile-vibium-csharp-bdd": {
-      "description": "Vibium Mobile / C# / Appium+SpecFlow BDD",
-      "source_repo": "tribikram1992/Mobile_VibiumFramework_CSharp_BDD",
-      "platform": "mobile", "language": "csharp", "test_framework": "bdd",
-      "adapter_key": ["mobile", "csharp", "bdd"],
-      "artifact_type": "nupkg",
-      "latest": null, "versions": {}
-    },
-
-    "mobile-vibium-javascript-wdio": {
-      "description": "Vibium Mobile / JavaScript / WebDriverIO — Appium-backed mobile automation",
-      "source_repo": "tribikram1992/Mobile_VibiumFramework_JavaScript_WebDriverIO",
-      "platform": "mobile", "language": "javascript", "test_framework": "wdio",
-      "adapter_key": ["mobile", "javascript", "wdio"],
-      "artifact_type": "npm",
-      "latest": null, "versions": {}
-    },
-
     "api-vibium-java-testng": {
-      "description": "Vibium API / Java / RestAssured+TestNG",
+      "description": "Vibium API / Java / RestAssured + TestNG",
       "source_repo": "tribikram1992/API_VibiumFramework_Java_TestNG",
       "platform": "api", "language": "java", "test_framework": "testng",
       "adapter_key": ["api", "java", "testng"],
@@ -156,56 +33,29 @@
       "latest": null, "versions": {}
     },
 
-    "api-vibium-java-bdd": {
-      "description": "Vibium API / Java / RestAssured+Cucumber BDD",
-      "source_repo": "tribikram1992/API_VibiumFramework_Java_BDD",
-      "platform": "api", "language": "java", "test_framework": "bdd",
-      "adapter_key": ["api", "java", "bdd"],
-      "artifact_type": "jar", "group_id": "io.vibium",
-      "latest": null, "versions": {}
-    },
-
-    "api-vibium-python-pytest": {
-      "description": "Vibium API / Python / pytest+Requests",
-      "source_repo": "tribikram1992/API_VibiumFramework_Python_Pytest",
-      "platform": "api", "language": "python", "test_framework": "pytest",
-      "adapter_key": ["api", "python", "pytest"],
+    "web-vibium-python-pytest": {
+      "description": "Vibium Web / Python / Selenium + pytest",
+      "source_repo": "tribikram1992/Web_VibiumFramework_Python_Pytest",
+      "platform": "web", "language": "python", "test_framework": "pytest",
+      "adapter_key": ["web", "python", "pytest"],
       "artifact_type": "wheel", "requires_python": ">=3.11,<3.13",
       "latest": null, "versions": {}
     },
 
-    "api-vibium-python-bdd": {
-      "description": "Vibium API / Python / Behave+Requests BDD",
-      "source_repo": "tribikram1992/API_VibiumFramework_Python_BDD",
-      "platform": "api", "language": "python", "test_framework": "bdd",
-      "adapter_key": ["api", "python", "bdd"],
-      "artifact_type": "wheel", "requires_python": ">=3.11,<3.13",
+    "web-vibium-javascript-playwright": {
+      "description": "Vibium Web / JavaScript / Playwright (browser UI)",
+      "source_repo": "tribikram1992/Web_VibiumFramework_JavaScript_Playwright",
+      "platform": "web", "language": "javascript", "test_framework": "playwright",
+      "adapter_key": ["web", "javascript", "playwright"],
+      "artifact_type": "npm",
       "latest": null, "versions": {}
     },
 
-    "api-vibium-csharp-nunit": {
-      "description": "Vibium API / C# / RestSharp+NUnit",
-      "source_repo": "tribikram1992/API_VibiumFramework_CSharp_NUnit",
-      "platform": "api", "language": "csharp", "test_framework": "nunit",
-      "adapter_key": ["api", "csharp", "nunit"],
-      "artifact_type": "nupkg",
-      "latest": null, "versions": {}
-    },
-
-    "api-vibium-csharp-bdd": {
-      "description": "Vibium API / C# / RestSharp+SpecFlow BDD",
-      "source_repo": "tribikram1992/API_VibiumFramework_CSharp_BDD",
-      "platform": "api", "language": "csharp", "test_framework": "bdd",
-      "adapter_key": ["api", "csharp", "bdd"],
-      "artifact_type": "nupkg",
-      "latest": null, "versions": {}
-    },
-
-    "api-vibium-javascript-jest": {
-      "description": "Vibium API / JavaScript / Jest+Supertest",
-      "source_repo": "tribikram1992/API_VibiumFramework_JavaScript_Jest",
-      "platform": "api", "language": "javascript", "test_framework": "jest",
-      "adapter_key": ["api", "javascript", "jest"],
+    "api-vibium-javascript-playwright": {
+      "description": "Vibium API / JavaScript / Playwright APIRequestContext",
+      "source_repo": "tribikram1992/API_VibiumFramework_JavaScript_Playwright",
+      "platform": "api", "language": "javascript", "test_framework": "playwright",
+      "adapter_key": ["api", "javascript", "playwright"],
       "artifact_type": "npm",
       "latest": null, "versions": {}
     }
