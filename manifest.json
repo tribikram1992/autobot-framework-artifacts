@@ -1,34 +1,20 @@
 {
-  "_comment": "Autobot Framework Artifact Registry — updated automatically by CI on each tagged release",
+  "_comment": "Autobot Framework Artifact Registry — updated automatically by CI on each tagged release. Never edit manually.",
   "schema_version": "1",
+  "maven_repo_url": "https://raw.githubusercontent.com/tribikram1992/autobot-framework-artifacts/main/maven-repo",
   "frameworks": {
     "vibium-java": {
-      "description": "Vibium Java automation framework core JAR",
+      "description": "Vibium Java automation framework — multi-module (commons, ui-core, api-core, mobile-core, ai)",
       "language": "java",
-      "latest": "1.0.0",
-      "versions": {
-        "1.0.0": {
-          "jar": "java/vibium-core-1.0.0.jar",
-          "sha256": "",
-          "released_at": "",
-          "min_java": "17",
-          "testng": "7.10.2",
-          "selenium": "4.27.0"
-        }
-      }
+      "group_id": "io.vibium",
+      "latest": null,
+      "versions": {}
     },
     "vibium-python": {
       "description": "Vibium Python automation framework wheel",
       "language": "python",
-      "latest": "1.0.0",
-      "versions": {
-        "1.0.0": {
-          "wheel": "python/vibium_py-1.0.0-py3-none-any.whl",
-          "sha256": "",
-          "released_at": "",
-          "requires_python": ">=3.11,<3.13"
-        }
-      }
+      "latest": null,
+      "versions": {}
     }
   }
 }

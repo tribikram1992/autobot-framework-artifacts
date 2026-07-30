@@ -1,17 +1,6 @@
-# Triggered by repository_dispatch from framework repos (VibiumFramework, etc.)
-# when they push a new tagged release. Updates manifest.json with the new version
-# and file SHA256.
-#
-# Event payload shape:
-#   client_payload:
-#     framework: "vibium-java"          # key in manifest.json
-#     version: "1.0.1"
-#     artifact_path: "java/vibium-core-1.0.1.jar"
-#     sha256: "<hex>"
-#     metadata:                          # merged into versions.<version>
-#       min_java: "17"
-#       testng: "7.10.2"
-#       selenium: "4.27.0"
+# Receives repository_dispatch from framework source repos after they push
+# artifacts into maven-repo/ (or python/ etc.) via the release workflow.
+# Updates manifest.json latest pointer and version metadata.
 
 name: Update manifest
 
@@ -27,17 +16,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Write artifact file
-        run: |
-          echo "${{ toJson(github.event.client_payload.artifact_b64) }}" \
-            | base64 -d > "${{ github.event.client_payload.artifact_path }}"
-
       - name: Update manifest.json
         env:
           FRAMEWORK: ${{ github.event.client_payload.framework }}
           VERSION: ${{ github.event.client_payload.version }}
-          ARTIFACT_PATH: ${{ github.event.client_payload.artifact_path }}
-          SHA256: ${{ github.event.client_payload.sha256 }}
           METADATA: ${{ toJson(github.event.client_payload.metadata) }}
         run: |
           python3 - <<'EOF'
@@ -48,15 +30,11 @@ jobs:
 
           fw   = os.environ["FRAMEWORK"]
           ver  = os.environ["VERSION"]
-          path = os.environ["ARTIFACT_PATH"]
-          sha  = os.environ["SHA256"]
           meta = json.loads(os.environ["METADATA"])
 
-          entry = {"released_at": datetime.datetime.utcnow().isoformat() + "Z", "sha256": sha}
-          # infer artifact key from path extension
-          ext = path.rsplit(".", 1)[-1]
-          key_map = {"jar": "jar", "whl": "wheel", "tgz": "tarball", "gz": "tarball"}
-          entry[key_map.get(ext, "artifact")] = path
+          entry = {
+              "released_at": datetime.datetime.utcnow().isoformat() + "Z",
+          }
           entry.update(meta)
 
           m["frameworks"][fw]["versions"][ver] = entry
@@ -64,13 +42,13 @@ jobs:
 
           with open("manifest.json", "w") as f:
               json.dump(m, f, indent=2)
-          print(f"manifest.json updated: {fw} → {ver}")
+          print(f"manifest.json: {fw} latest → {ver}")
           EOF
 
-      - name: Commit and push
+      - name: Commit manifest update
         run: |
           git config user.name  "Autobot CI"
           git config user.email "ci@autobot"
-          git add manifest.json "${{ github.event.client_payload.artifact_path }}"
-          git commit -m "release: ${{ github.event.client_payload.framework }} ${{ github.event.client_payload.version }}"
+          git add manifest.json
+          git diff --staged --quiet || git commit -m "release: ${{ github.event.client_payload.framework }} ${{ github.event.client_payload.version }}"
           git push
