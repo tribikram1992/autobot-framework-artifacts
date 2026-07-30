@@ -1,18 +1,98 @@
 {
   "_comment": "Autobot Framework Artifact Registry — updated automatically by CI on each tagged release. Never edit manually.",
+  "_naming_convention": "{Platform}_{FamilyName}_{Language}_{TestFramework} — each key maps to one adapter class in Autobot",
   "schema_version": "1",
   "maven_repo_url": "https://raw.githubusercontent.com/tribikram1992/autobot-framework-artifacts/main/maven-repo",
   "frameworks": {
-    "vibium-java": {
-      "description": "Vibium Java automation framework — multi-module (commons, ui-core, api-core, mobile-core, ai)",
+    "web-vibium-java-testng": {
+      "description": "Vibium Java/TestNG web automation framework",
+      "source_repo": "tribikram1992/Web_VibiumFramework_Java_TestNG",
       "language": "java",
+      "platform": "web",
+      "test_framework": "testng",
+      "adapter_key": ["web", "java", "testng"],
+      "artifact_type": "jar",
       "group_id": "io.vibium",
       "latest": null,
       "versions": {}
     },
-    "vibium-python": {
-      "description": "Vibium Python automation framework wheel",
+    "web-vibium-java-bdd": {
+      "description": "Vibium Java/Cucumber+TestNG BDD web automation framework",
+      "source_repo": "tribikram1992/Web_VibiumFramework_Java_BDD",
+      "language": "java",
+      "platform": "web",
+      "test_framework": "bdd",
+      "adapter_key": ["web", "java", "bdd"],
+      "artifact_type": "jar",
+      "group_id": "io.vibium",
+      "latest": null,
+      "versions": {}
+    },
+    "web-vibium-python-pytest": {
+      "description": "Vibium Python/pytest web automation framework",
+      "source_repo": "tribikram1992/Web_VibiumFramework_Python_Pytest",
       "language": "python",
+      "platform": "web",
+      "test_framework": "pytest",
+      "adapter_key": ["web", "python", "pytest"],
+      "artifact_type": "wheel",
+      "requires_python": ">=3.11,<3.13",
+      "latest": null,
+      "versions": {}
+    },
+    "web-vibium-python-bdd": {
+      "description": "Vibium Python/Behave BDD web automation framework",
+      "source_repo": "tribikram1992/Web_VibiumFramework_Python_BDD",
+      "language": "python",
+      "platform": "web",
+      "test_framework": "bdd",
+      "adapter_key": ["web", "python", "bdd"],
+      "artifact_type": "wheel",
+      "requires_python": ">=3.11,<3.13",
+      "latest": null,
+      "versions": {}
+    },
+    "web-vibium-csharp-nunit": {
+      "description": "Vibium C#/NUnit web automation framework",
+      "source_repo": "tribikram1992/Web_VibiumFramework_CSharp_NUnit",
+      "language": "csharp",
+      "platform": "web",
+      "test_framework": "nunit",
+      "adapter_key": ["web", "csharp", "nunit"],
+      "artifact_type": "nupkg",
+      "latest": null,
+      "versions": {}
+    },
+    "web-vibium-csharp-bdd": {
+      "description": "Vibium C#/SpecFlow BDD web automation framework",
+      "source_repo": "tribikram1992/Web_VibiumFramework_CSharp_BDD",
+      "language": "csharp",
+      "platform": "web",
+      "test_framework": "bdd",
+      "adapter_key": ["web", "csharp", "bdd"],
+      "artifact_type": "nupkg",
+      "latest": null,
+      "versions": {}
+    },
+    "web-vibium-javascript-playwright": {
+      "description": "Vibium JavaScript/Playwright web automation framework",
+      "source_repo": "tribikram1992/Web_VibiumFramework_JavaScript_Playwright",
+      "language": "javascript",
+      "platform": "web",
+      "test_framework": "playwright",
+      "adapter_key": ["web", "javascript", "playwright"],
+      "artifact_type": "npm",
+      "latest": null,
+      "versions": {}
+    },
+    "web-vibium-javascript-wdio": {
+      "description": "Vibium JavaScript/WebDriverIO web automation framework",
+      "source_repo": "tribikram1992/Web_VibiumFramework_JavaScript_WebDriverIO",
+      "language": "javascript",
+      "platform": "web",
+      "test_framework": "wdio",
+      "adapter_key": ["web", "javascript", "wdio"],
+      "artifact_type": "npm",
       "latest": null,
       "versions": {}
     }
